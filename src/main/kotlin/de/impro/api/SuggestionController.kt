@@ -19,13 +19,16 @@ open class SuggestionController {
 
     @Get(uri = "/sugesstions", produces = [MediaType.APPLICATION_JSON])
     fun getAllSuggestions(): List<SuggestionGroupedDto> {
-       return suggestionRepository.findAllSuggestionsGrouped().toList()
+        return suggestionRepository.findAllSuggestionsGrouped().toList() //
+            .map { it -> it.copy(it.text.uppercase()) } //
+            .groupBy { it.text } //
+            .map { (k, v) -> SuggestionGroupedDto(k, v.sumOf { it.value }) }
     }
 
-    @Post("/submitsuggestion" , consumes = [MediaType.APPLICATION_JSON])
-    fun addSuggestion( suggestions: List<SuggestionSubmit>){
+    @Post("/submitsuggestion", consumes = [MediaType.APPLICATION_JSON])
+    fun addSuggestion(suggestions: List<SuggestionSubmit>) {
         suggestionRepository.saveAll(suggestions.map { it -> it.toSuggestion() })
     }
 }
 
-fun SuggestionSubmit.toSuggestion() = Suggestion(word=word, id=null)
+fun SuggestionSubmit.toSuggestion() = Suggestion(word = word, id = null)
