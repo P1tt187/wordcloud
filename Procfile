@@ -1,0 +1,1 @@
+web: java -jar build/libs/suggestorn-0.1-all.jar
