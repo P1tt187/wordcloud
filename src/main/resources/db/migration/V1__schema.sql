@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS "suggestion";
+
+
+CREATE TABLE "suggestion"
+(
+    id   BIGINT NOT NULL,
+    word VARCHAR(255),
+    CONSTRAINT pk_suggestion PRIMARY KEY (id)
+);
+CREATE SEQUENCE IF NOT EXISTS suggestion_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE IF NOT EXISTS hibernate_sequence START WITH 1 INCREMENT BY 1;

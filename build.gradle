@@ -42,9 +42,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("com.h2database:h2")
+    runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("org.slf4j:slf4j-simple")
     testImplementation("org.assertj:assertj-core")
     implementation("io.micronaut:micronaut-validation")
+
+    implementation("io.micronaut.sql:micronaut-vertx-pg-client")
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
@@ -86,6 +89,11 @@ dependencyUpdates {
         isNonStable(it.candidate.version)
     }
 }
+
+run {
+    systemProperty('micronaut.environments','dev')
+}
+
 
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
