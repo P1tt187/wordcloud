@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: de.impro
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: gradle
+features: [annotation-api, app-name, assertj, data, data-jpa, flyway, gradle, h2, http-client, http-session, jdbc-hikari, junit, kotlin, kotlin-application, kotlin-extension-functions, netty-server, openapi, readme, shade, slf4j-simple, yaml]

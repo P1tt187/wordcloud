@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de" >
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta charset="UTF-8">
+    <title>Vorschläge</title>
+    <link rel="stylesheet" href="/static/cloudStyle.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="row">
+<div class="container-fluid" id="root">
+</div>
+</div>
+<div class="row">
+<div class="container-fluid">
+    <div class="col-md-3">
+    <form id="suggestform">
+        <th:block th:each="i: ${#numbers.sequence(1, 5)}">
+        <div class="form-control-sm">
+            <input type="text" placeholder="vorschlag" name="v{$i}">
+        </div>
+        </th:block>
+        <div class="form-control-sm">
+            <button type="submit" class="bg-success btn btn-sm"> + </button>
+        </div>
+    </form>
+    </div>
+</div>
+</div>
+
+<script src="/static/cloud.js"></script>
+
+</body>
+</html>

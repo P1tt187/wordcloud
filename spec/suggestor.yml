@@ -1,0 +1,54 @@
+openapi: '3.0.2'
+info:
+  title: Suggestor API
+  version: '1.0'
+servers:
+  - url: http://localhost:8080/api/1
+
+components:
+  schemas:
+    Suggetion: 
+      type: object
+      required:
+        - word
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        word:
+          type: string
+          maxLength: 250
+          minLength: 2    
+          nullable: false      
+paths:
+  /sugesstions:
+    get:
+      operationId: "getAllSuggestions"
+      summary: "get all current suggestions"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    word:
+                     type: string
+                    freq:
+                     type: integer 
+  /submitsuggestion:
+    post: 
+     operationId: "addSuggestion"
+     requestBody:
+      content:
+       application/json:
+        schema:
+         type: array
+         items:
+           $ref: '#/components/schemas/Suggetion'
+     responses:
+      '200':
+       description: OK
+
