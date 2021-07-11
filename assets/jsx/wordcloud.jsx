@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 
 export function createWordCloudFrom(words) {
     const option = {
-        fontSizes: [46, 96]
+        fontSizes: [35, 96]
     };
     return <ReactWordcloud words={words} options={option}/>;
 }
