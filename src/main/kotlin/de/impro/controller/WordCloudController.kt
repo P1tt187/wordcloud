@@ -9,11 +9,11 @@ import java.nio.charset.StandardCharsets
 import javax.inject.Singleton
 
 @Singleton
-@Controller("/views")
+@Controller()
 @Hidden
 class WordCloudController {
     @View("cloud")
-    @Get("/cloud")
+    @Get("/")
     fun cloud() : HttpResponse<Void> {
         return HttpResponse.ok<Void?>().characterEncoding(StandardCharsets.UTF_8);
     }
