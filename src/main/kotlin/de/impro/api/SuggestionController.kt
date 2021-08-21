@@ -2,7 +2,9 @@ package de.impro.api
 
 import de.impro.dto.SuggestionGroupedDto
 import de.impro.dto.SuggestionSubmit
+import de.impro.model.Question
 import de.impro.model.Suggestion
+import de.impro.repository.QuestionRepository
 import de.impro.repository.SuggestionRepository
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller
@@ -13,13 +15,17 @@ import javax.inject.Inject
 
 @Validated
 @Controller("/api")
-open class SuggestionController {
+class SuggestionController {
     @Inject
     lateinit var suggestionRepository: SuggestionRepository
 
+    @Inject
+    lateinit var questionRepository: QuestionRepository
+
     @Get(uri = "/sugesstions", produces = [MediaType.APPLICATION_JSON])
     fun getAllSuggestions(): List<SuggestionGroupedDto> {
-        return suggestionRepository.findAllSuggestionsGrouped().toList() //
+        val question = questionRepository.findLatestQuestion() ?: return emptyList()
+        return suggestionRepository.findAllSuggestionsGrouped(question).toList() //
             .map { it -> it.copy(it.text.uppercase()) } //
             .groupBy { it.text } //
             .map { (k, v) -> SuggestionGroupedDto(k, v.sumOf { it.value }) }
@@ -27,8 +33,9 @@ open class SuggestionController {
 
     @Post("/submitsuggestion", consumes = [MediaType.APPLICATION_JSON])
     fun addSuggestion(suggestions: List<SuggestionSubmit>) {
-        suggestionRepository.saveAll(suggestions.map { it -> it.toSuggestion() })
+        val question = questionRepository.findLatestQuestion()?: return;
+        suggestionRepository.saveAll(suggestions.map { it -> it.toSuggestion(question) })
     }
 }
 
-fun SuggestionSubmit.toSuggestion() = Suggestion(word = word, id = null)
+fun SuggestionSubmit.toSuggestion(question: Question) = Suggestion(word = word, question)

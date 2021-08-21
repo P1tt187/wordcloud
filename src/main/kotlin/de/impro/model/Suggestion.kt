@@ -18,12 +18,17 @@ data class Suggestion(
     
     @Column(name="input_time")
     @CreationTimestamp
-    var inputTime: LocalDateTime,
+    var inputTime: LocalDateTime?,
     
     @ManyToOne()
     @JoinColumn(name="question_id")
     var question:Question
     ) {
+
+    constructor(  word: String,  question: Question ) :
+        this(id=null, word=word, question=question, inputTime=null)
+
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
