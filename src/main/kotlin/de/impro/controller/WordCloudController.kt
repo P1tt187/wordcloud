@@ -12,9 +12,9 @@ import javax.inject.Singleton
 @Controller()
 @Hidden
 class WordCloudController {
-    @View("cloud")
-    @Get("/")
-    fun cloud() : HttpResponse<Void> {
-        return HttpResponse.ok<Void?>().characterEncoding(StandardCharsets.UTF_8);
-    }
+  @View("cloud")
+  @Get("/")
+  fun cloud(): HttpResponse<Void> {
+    return HttpResponse.ok<Void?>().characterEncoding(StandardCharsets.UTF_8)
+  }
 }

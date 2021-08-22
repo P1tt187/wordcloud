@@ -1,3 +1,3 @@
 package de.impro.dto
 
-data class QuestionSubmit (val word: String)
+data class QuestionSubmit(val word: String)

@@ -1,8 +1,8 @@
-const text = 'it work\'s!';
+const text = "it work's!";
 
 const itWorks = () => {
-    console.log(text);
-    return text;
+  console.log(text);
+  return text;
 };
 
 export default itWorks;
