@@ -1,1 +1,1 @@
-web: java -jar build/libs/suggestorn-0.1-all.jar
+web: java -Dserver.port=$PORT -jar build/libs/suggestorn-0.1-all.jar
