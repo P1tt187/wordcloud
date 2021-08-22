@@ -1,6 +1,3 @@
-import './questionDowloader'
-import './wordDownloader'
-import './submitsuggestion'
-
-
-
+import "./questionDowloader";
+import "./wordDownloader";
+import "./submitsuggestion";

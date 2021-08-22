@@ -1,3 +1,3 @@
 package de.impro.dto
 
-data class QuestionDto(val question:String)
+data class QuestionDto(val question: String)

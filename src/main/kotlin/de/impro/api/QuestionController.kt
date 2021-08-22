@@ -11,23 +11,20 @@ import io.micronaut.http.annotation.Post
 import io.micronaut.validation.Validated
 import javax.inject.Inject
 
-
 @Validated
 @Controller
 class QuestionController {
-    @Inject
-    lateinit var questionRepository: QuestionRepository
+  @Inject lateinit var questionRepository: QuestionRepository
 
-    @Post("/submitquestion", consumes = [MediaType.APPLICATION_JSON])
-    fun addQuestion(quest: QuestionSubmit) {
-        val question = Question(word = quest.word)
-        questionRepository.save(question)
-    }
+  @Post("/submitquestion", consumes = [MediaType.APPLICATION_JSON])
+  fun addQuestion(quest: QuestionSubmit) {
+    val question = Question(word = quest.word)
+    questionRepository.save(question)
+  }
 
-    @Get("/latestQuestion", produces = [MediaType.APPLICATION_JSON])
-    fun getLatestQuestion() :QuestionDto? {
-        val question = questionRepository.findLatestQuestion()?:return null
-        return QuestionDto(question.word)
-    }
-
+  @Get("/latestQuestion", produces = [MediaType.APPLICATION_JSON])
+  fun getLatestQuestion(): QuestionDto? {
+    val question = questionRepository.findLatestQuestion() ?: return null
+    return QuestionDto(question.word)
+  }
 }
