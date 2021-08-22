@@ -9,7 +9,7 @@ import java.math.BigInteger
 import org.hibernate.jpa.QueryHints
 
 @Repository
-interface QuestionRepository : CrudRepository<Question, BigInteger> {
+interface QuestionRepository : CrudRepository<Question, Long> {
 
   @Query("select q from Question q  order by q.inputTime desc ")
   @io.micronaut.data.annotation.repeatable.QueryHints(
