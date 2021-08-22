@@ -60,7 +60,10 @@ application {
 	mainClass.set("de.impro.ApplicationKt")
 }
 java {
-	sourceCompatibility = JavaVersion.toVersion("11")
+	toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+        vendor = JvmVendorSpec.ADOPTOPENJDK
+    }
 }
 
 tasks {
@@ -110,7 +113,12 @@ spotless {
 }
 
 
-task stage(dependsOn: ['build', 'clean'])
+task stage(dependsOn: ['build', 'clean']){
+	spotlessCheck.enabled=false
+	spotlessKotlin.enabled=false
+	spotlessGroovyGradle.enabled=false
+	spotlessStyling.enabled=false
+}
 build.mustRunAfter clean
 
 
