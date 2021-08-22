@@ -1,1 +1,1 @@
-Alter Table "suggestion"  ADD COLUMN input_time datetime;
+Alter Table "suggestion"  ADD COLUMN input_time timestamp;
