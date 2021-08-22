@@ -2,6 +2,7 @@ import React from 'react';
 import ReactWordcloud from 'react-wordcloud';
 import {ApiClient, DefaultApi, SuggestionGroupedDto} from "suggestor1/src";
 import ReactDOM from "react-dom";
+import {downloadQuestion} from "./questionDowloader";
 
 export function createWordCloudFrom(words) {
     const option = {
@@ -39,6 +40,7 @@ export function refreshWordCloud() {
         if (detectChanges(data, oldData)) {
             let wordCloud = createWordCloudFrom(data);
             ReactDOM.render(wordCloud, document.getElementById('root'));
+            downloadQuestion();
         }
     });
 }
