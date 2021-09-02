@@ -4,6 +4,8 @@
     text-align: center;
     padding:100px;
     background-color: lightgray;
+    background: url('theater.jpg');
+    background-size: auto;
 }
 
 #root::after{
