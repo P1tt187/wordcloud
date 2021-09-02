@@ -47,7 +47,7 @@
             <form class="theater" id="suggestform">
                    <th:block th:each="i: ${#numbers.sequence(1, 5)}">
                         <div class="form-control-sm">
-                            <input type="text" placeholder="vorschlag" name="v{$i}">
+                            <input type="text"  placeholder="vorschlag" th:name='${"v" + i}' />
                          </div>
                     </th:block>
                      <div class="form-control-sm">
